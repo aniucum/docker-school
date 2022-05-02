@@ -1,17 +1,41 @@
 version: "3.9"
 
 services:
+  frontend:
+    image: localhost:5000/frontend
+    ports:
+      - "80:80"
+    networks:
+      - frontend
+
+  backend:
+    image: localhost:5000/backend
+    ports:
+      - 8000
+    environment:
+      - POSTGRES_NAME=django
+      - POSTGRES_USER=django
+      - POSTGRES_PASSWORD=django
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - database
+
   database:
     image: postgres:13.6
-    command:
-      - "postgres"
-      - "c"
+    # command:
+    #   - "postgres"
+    #   - "c"
     volumes:
       - ./data/db:/var/lib/postgresql/data
+    ports:
+      - 5432      
     environment:
       - POSTGRES_DB=django
       - POSTGRES_USER=django
       - POSTGRES_PASSWORD=django
+      - POSTGRES_HOST_AUTH_METHOD=md5
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
       interval: 10s
@@ -19,13 +43,11 @@ services:
       retries: 5
       start_period: 10s
     restart: unless-stopped
+    networks:
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
   backend:
-    image: backend
-    ports:
-      - "8000:8000"
-    environment:
-      - POSTGRES_NAME=django
-      - POSTGRES_USER=django
-      - POSTGRES_PASSWORD=django
-    depends_on:
-      - database
+    driver: bridge
