@@ -54,6 +54,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    'http://192.168.97.76',
+    'http://192.168.97.76:8000'
+]
+
 ROOT_URLCONF = 'lib_catalog.urls'
 
 TEMPLATES = [
