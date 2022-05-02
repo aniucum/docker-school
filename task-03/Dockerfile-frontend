@@ -8,5 +8,5 @@ FROM nginx:latest
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 COPY --from=builder --chown=nginx:nginx /app/build .
-COPY --chown=nginx:nginx ./frontend/default.conf /etc/nginx/conf.ddefault.conf
+#COPY --chown=nginx:nginx ./frontend/default.conf /etc/nginx/conf.ddefault.conf
 EXPOSE 80
