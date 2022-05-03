@@ -15,8 +15,12 @@ docker tag backend localhost:5000/backend && \
 docker push localhost:5000/backend
 ```
 - запускаем
+```
 docker compose up -d
+```
 ![task 03 01.img](/task-03/img/01.JPG)
 ![task 03 02.img](/task-03/img/02.JPG)
 - останавливаем
+```
 docker compose down --remove-orphans
+```
