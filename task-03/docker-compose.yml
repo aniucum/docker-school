@@ -20,9 +20,6 @@ services:
 
   database:
     image: postgres:13.6
-    # command:
-    #   - "postgres"
-    #   - "c"
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
