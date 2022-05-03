@@ -1,5 +1,5 @@
-
--запускам registry для образов
+### I вариант
+- запускам registry для образов
 ```
 docker run -d -p 5000:5000 --name registry registry:2
 ```
@@ -23,4 +23,14 @@ docker compose up -d
 - останавливаем
 ```
 docker compose down --remove-orphans
+```
+### II вариант
+- собираем
+```
+docker compose -f docker-compose-v2.yml build
+```
+![task 03 03.img](/task-03/img/03.JPG)
+- запускаем
+```
+docker compose -f docker-compose-v2.yml up -d
 ```
